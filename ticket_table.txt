@@ -1,0 +1,30 @@
+CREATE TABLE passenger_profile(
+    passenger_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    nationality VARCHAR(255) NOT NULL,
+    gender ENUM('Male' , 'Female', 'Other')
+);
+
+CREATE TABLE ticket_info(
+    ticket_id INT   AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    flight_id INT,
+    FOREIGN KEY(flight_id) REFERENCES flight_info(flight_id),
+    passenger_id INT,
+    FOREIGN KEY(passenger_id) REFERENCES passenger_profile(passenger_id),
+    seat_number INT,
+    price VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE flight_info(
+    flight_id INT AUTO_INCREMENT PRIMARY KEY,
+    airline_id VARCHAR(255) NOT NULL,
+    airline_name VARCHAR(255) NOT NULL,
+    from_location VARCHAR(255) NOT NULL,
+    to_location VARCHAR(255) NOT NULL,
+    deprature_time DATETIME NOT NULL,
+    arrival_time DATETIME NOT NULL,
+    total_seats INT NOT NULL
+);
+
